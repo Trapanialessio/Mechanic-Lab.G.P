@@ -1,0 +1,32 @@
+{
+	"name": "Y.W. Event sheet",
+	"events": [
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-any-key-pressed",
+					"objectClass": "Keyboard",
+					"sid": 632977541401920
+				}
+			],
+			"actions": [
+				{
+					"id": "go-to-layout",
+					"objectClass": "System",
+					"sid": 875085291653018,
+					"parameters": {
+						"layout": "Level 1"
+					}
+				},
+				{
+					"id": "restart-layout",
+					"objectClass": "System",
+					"sid": 309281350442336
+				}
+			],
+			"sid": 793508096950511
+		}
+	],
+	"sid": 359401181417927
+}

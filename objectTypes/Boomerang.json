@@ -1,0 +1,84 @@
+{
+	"name": "Boomerang",
+	"plugin-id": "Sprite",
+	"sid": 740344131211265,
+	"isGlobal": false,
+	"instanceVariables": [
+		{
+			"name": "Id",
+			"type": "number",
+			"desc": "",
+			"show": true,
+			"sid": 625398526709591
+		}
+	],
+	"behaviorTypes": [
+		{
+			"behaviorId": "Rotate",
+			"name": "Rotate",
+			"sid": 827715037112407
+		},
+		{
+			"behaviorId": "custom",
+			"name": "Custom",
+			"sid": 697581552611439
+		}
+	],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 50,
+						"height": 50,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 3738744,
+						"collisionPoly": {
+							"points": [
+								0.6769643919808518,
+								0.022916660535903282,
+								0.8280953252883182,
+								0.01690477280389685,
+								0.9762499945504325,
+								0.17285715511866964,
+								0.9754166339692609,
+								0.3368452598935079,
+								0.8420832515898201,
+								0.4786904979887462,
+								0.696845420655751,
+								0.47845243817283983,
+								0.1790477498372398,
+								0.98005947067624,
+								0.08035729816981751,
+								0.9785713945116317,
+								0.016488138834635003,
+								0.9176785932268423,
+								0.018749999999999992,
+								0.8196428946086338,
+								0.5395835840134396,
+								0.2928571578434536,
+								0.53505958647955,
+								0.16404760269891652
+							]
+						},
+						"useCollisionPoly": true,
+						"duration": 1
+					}
+				],
+				"sid": 564339494543685,
+				"name": "Animation 1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			}
+		],
+		"subfolders": []
+	}
+}

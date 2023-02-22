@@ -1,0 +1,1971 @@
+{
+	"name": "Event sheet 1",
+	"events": [
+		{
+			"eventType": "variable",
+			"name": "Id",
+			"type": "number",
+			"initialValue": "0",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 171067160615137
+		},
+		{
+			"eventType": "variable",
+			"name": "IsOrNot",
+			"type": "string",
+			"initialValue": "Activated",
+			"comment": "",
+			"isStatic": false,
+			"isConstant": false,
+			"sid": 322631499602336
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Player Controller",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "key-is-down",
+							"objectClass": "Keyboard",
+							"sid": 939355026495297,
+							"parameters": {
+								"key": 68
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "simulate-control",
+							"objectClass": "Player",
+							"sid": 730086937306808,
+							"behaviorType": "Platform",
+							"parameters": {
+								"control": "right"
+							}
+						},
+						{
+							"id": "set-mirrored",
+							"objectClass": "Player",
+							"sid": 635764464381613,
+							"parameters": {
+								"state": "not-mirrored"
+							}
+						},
+						{
+							"id": "set-animation",
+							"objectClass": "Player",
+							"sid": 327718912148155,
+							"parameters": {
+								"animation": "\"Run\"",
+								"from": "beginning"
+							}
+						}
+					],
+					"sid": 497756818043311
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "key-is-down",
+							"objectClass": "Keyboard",
+							"sid": 293151097248907,
+							"parameters": {
+								"key": 65
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "simulate-control",
+							"objectClass": "Player",
+							"sid": 942533701919827,
+							"behaviorType": "Platform",
+							"parameters": {
+								"control": "left"
+							}
+						},
+						{
+							"id": "set-mirrored",
+							"objectClass": "Player",
+							"sid": 482286675755695,
+							"parameters": {
+								"state": "mirrored"
+							}
+						},
+						{
+							"id": "set-animation",
+							"objectClass": "Player",
+							"sid": 522310969811745,
+							"parameters": {
+								"animation": "\"Run\"",
+								"from": "beginning"
+							}
+						}
+					],
+					"sid": 757432395474733
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-key-pressed",
+							"objectClass": "Keyboard",
+							"sid": 269892311779015,
+							"parameters": {
+								"key": 32
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "simulate-control",
+							"objectClass": "Player",
+							"sid": 747237314370582,
+							"behaviorType": "Platform",
+							"parameters": {
+								"control": "jump"
+							}
+						}
+					],
+					"sid": 199711012471436
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-moving",
+							"objectClass": "Player",
+							"sid": 860878426280640,
+							"behaviorType": "Platform",
+							"isInverted": true
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation",
+							"objectClass": "Player",
+							"sid": 823128521035061,
+							"parameters": {
+								"animation": "\"Idle\"",
+								"from": "beginning"
+							}
+						}
+					],
+					"sid": 853833813398080
+				}
+			],
+			"sid": 516304967929911
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Projectile Controller",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-key-pressed",
+							"objectClass": "Keyboard",
+							"sid": 180377299054744,
+							"parameters": {
+								"key": 69
+							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Boomerang",
+							"sid": 622735509569260,
+							"parameters": {
+								"instance-variable": "Id",
+								"comparison": 0,
+								"value": "0"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-instvar-value",
+							"objectClass": "Boomerang",
+							"sid": 210173770406050,
+							"parameters": {
+								"instance-variable": "Id",
+								"value": "1"
+							}
+						}
+					],
+					"sid": 213624247021488,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "trigger-once-while-true",
+									"objectClass": "System",
+									"sid": 398454993444116
+								}
+							],
+							"actions": [],
+							"sid": 261864647224694,
+							"children": [
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-mirrored",
+											"objectClass": "Player",
+											"sid": 471634353256569
+										},
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 483301929601084,
+											"parameters": {
+												"variable": "IsOrNot",
+												"comparison": 0,
+												"value": "\"Activated\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "create-object",
+											"objectClass": "System",
+											"sid": 483320601860792,
+											"parameters": {
+												"object-to-create": "Boomerang",
+												"layer": "\"Projectiles\"",
+												"x": "Player.ImagePointX(1)",
+												"y": "Player.ImagePointY(1)",
+												"create-hierarchy": false,
+												"template-name": "\"\""
+											}
+										},
+										{
+											"id": "set-speed",
+											"objectClass": "Boomerang",
+											"sid": 251549116586512,
+											"behaviorType": "Rotate",
+											"parameters": {
+												"speed": "-800"
+											}
+										},
+										{
+											"id": "set-enabled",
+											"objectClass": "Boomerang",
+											"sid": 157251227868277,
+											"behaviorType": "Custom",
+											"parameters": {
+												"state": "enabled"
+											}
+										},
+										{
+											"id": "set-speed",
+											"objectClass": "Boomerang",
+											"sid": 534506842319508,
+											"behaviorType": "Custom",
+											"parameters": {
+												"which": "horizontal",
+												"speed": "-500"
+											}
+										},
+										{
+											"id": "wait",
+											"objectClass": "System",
+											"sid": 565288719305312,
+											"parameters": {
+												"seconds": "0.5"
+											}
+										},
+										{
+											"id": "set-enabled",
+											"objectClass": "Boomerang",
+											"sid": 185372224869081,
+											"behaviorType": "Custom",
+											"parameters": {
+												"state": "disabled"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "Boomerang",
+											"sid": 844991077436611,
+											"parameters": {
+												"instance-variable": "Id",
+												"value": "1"
+											}
+										}
+									],
+									"sid": 482225231128598
+								},
+								{
+									"eventType": "block",
+									"conditions": [
+										{
+											"id": "is-mirrored",
+											"objectClass": "Player",
+											"sid": 598205218087497,
+											"isInverted": true
+										},
+										{
+											"id": "compare-eventvar",
+											"objectClass": "System",
+											"sid": 994477103547849,
+											"parameters": {
+												"variable": "IsOrNot",
+												"comparison": 0,
+												"value": "\"Activated\""
+											}
+										}
+									],
+									"actions": [
+										{
+											"id": "create-object",
+											"objectClass": "System",
+											"sid": 535659634488240,
+											"parameters": {
+												"object-to-create": "Boomerang",
+												"layer": "\"Projectiles\"",
+												"x": "Player.ImagePointX(1)",
+												"y": "Player.ImagePointY(1)",
+												"create-hierarchy": false,
+												"template-name": "\"\""
+											}
+										},
+										{
+											"id": "set-speed",
+											"objectClass": "Boomerang",
+											"sid": 587959621829689,
+											"behaviorType": "Rotate",
+											"parameters": {
+												"speed": "800"
+											}
+										},
+										{
+											"id": "set-enabled",
+											"objectClass": "Boomerang",
+											"sid": 927298716995245,
+											"behaviorType": "Custom",
+											"parameters": {
+												"state": "enabled"
+											}
+										},
+										{
+											"id": "set-speed",
+											"objectClass": "Boomerang",
+											"sid": 436872612174462,
+											"behaviorType": "Custom",
+											"parameters": {
+												"which": "horizontal",
+												"speed": "500"
+											}
+										},
+										{
+											"id": "wait",
+											"objectClass": "System",
+											"sid": 737998089839002,
+											"parameters": {
+												"seconds": "0.5"
+											}
+										},
+										{
+											"id": "set-enabled",
+											"objectClass": "Boomerang",
+											"sid": 673758005981917,
+											"behaviorType": "Custom",
+											"parameters": {
+												"state": "disabled"
+											}
+										},
+										{
+											"id": "set-instvar-value",
+											"objectClass": "Boomerang",
+											"sid": 734806472231874,
+											"parameters": {
+												"instance-variable": "Id",
+												"value": "1"
+											}
+										}
+									],
+									"sid": 470412924158149
+								}
+							]
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "is-on-screen",
+							"objectClass": "Boomerang",
+							"sid": 171599052973044
+						}
+					],
+					"actions": [
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 202425455594008,
+							"parameters": {
+								"variable": "IsOrNot",
+								"value": "\"Deactivated\""
+							}
+						}
+					],
+					"sid": 489357681828972
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Boomerang",
+							"sid": 870261904054855,
+							"parameters": {
+								"instance-variable": "Id",
+								"comparison": 0,
+								"value": "1"
+							}
+						},
+						{
+							"id": "every-tick",
+							"objectClass": "System",
+							"sid": 930920023544197
+						}
+					],
+					"actions": [],
+					"sid": 348383266601129,
+					"children": [
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-y",
+									"objectClass": "Boomerang",
+									"sid": 687099038845711,
+									"parameters": {
+										"comparison": 5,
+										"y-co-ordinate": "Player.Y"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-y",
+									"objectClass": "Boomerang",
+									"sid": 854630085079207,
+									"parameters": {
+										"y": "Self.Y"
+									}
+								}
+							],
+							"sid": 939709304130891
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-y",
+									"objectClass": "Boomerang",
+									"sid": 117095818492710,
+									"parameters": {
+										"comparison": 3,
+										"y-co-ordinate": "Player.Y"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-y",
+									"objectClass": "Boomerang",
+									"sid": 171474637998291,
+									"parameters": {
+										"y": "Self.Y"
+									}
+								}
+							],
+							"sid": 623609702335187
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-x",
+									"objectClass": "Boomerang",
+									"sid": 758185374226223,
+									"parameters": {
+										"comparison": 5,
+										"x-co-ordinate": "Player.X"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-x",
+									"objectClass": "Boomerang",
+									"sid": 350682571415195,
+									"parameters": {
+										"x": "Self.X - 300 * dt"
+									}
+								}
+							],
+							"sid": 841387148613984
+						},
+						{
+							"eventType": "block",
+							"conditions": [
+								{
+									"id": "compare-x",
+									"objectClass": "Boomerang",
+									"sid": 121969517715157,
+									"parameters": {
+										"comparison": 3,
+										"x-co-ordinate": "Player.X"
+									}
+								}
+							],
+							"actions": [
+								{
+									"id": "set-x",
+									"objectClass": "Boomerang",
+									"sid": 202550489664349,
+									"parameters": {
+										"x": "Self.X + 300 * dt"
+									}
+								}
+							],
+							"sid": 509199002615636
+						}
+					]
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-collision-with-another-object",
+							"objectClass": "Boomerang",
+							"sid": 121396173716212,
+							"parameters": {
+								"object": "Player"
+							}
+						},
+						{
+							"id": "compare-instance-variable",
+							"objectClass": "Boomerang",
+							"sid": 823677716024923,
+							"parameters": {
+								"instance-variable": "Id",
+								"comparison": 0,
+								"value": "1"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-position",
+							"objectClass": "Boomerang",
+							"sid": 785228430148896,
+							"parameters": {
+								"x": "184",
+								"y": "-134"
+							}
+						},
+						{
+							"id": "set-instvar-value",
+							"objectClass": "Boomerang",
+							"sid": 782022137197894,
+							"parameters": {
+								"instance-variable": "Id",
+								"value": "0"
+							}
+						},
+						{
+							"id": "set-eventvar-value",
+							"objectClass": "System",
+							"sid": 943604738645986,
+							"parameters": {
+								"variable": "IsOrNot",
+								"value": "\"Activated\""
+							}
+						}
+					],
+					"sid": 419542729292575
+				}
+			],
+			"sid": 471824517727125
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Interactables",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-created",
+							"objectClass": "Lever",
+							"sid": 281033729896966
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation",
+							"objectClass": "Lever",
+							"sid": 743895822317690,
+							"parameters": {
+								"animation": "\"Inactive\"",
+								"from": "beginning"
+							}
+						}
+					],
+					"sid": 120594416641982
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-collision-with-another-object",
+							"objectClass": "Boomerang",
+							"sid": 663717208572823,
+							"parameters": {
+								"object": "Lever"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 418177612836869,
+							"parameters": {
+								"audio-file": "LeverSound",
+								"loop": "not-looping",
+								"volume": "0",
+								"stereo-pan": "0",
+								"tag-optional": "\"\""
+							}
+						},
+						{
+							"id": "set-animation",
+							"objectClass": "Lever",
+							"sid": 293899353773591,
+							"parameters": {
+								"animation": "\"Lever transition\"",
+								"from": "beginning"
+							}
+						},
+						{
+							"id": "set-collisions-enabled",
+							"objectClass": "Lever",
+							"sid": 453716775033283,
+							"parameters": {
+								"collisions": "disabled"
+							}
+						},
+						{
+							"id": "wait",
+							"objectClass": "System",
+							"sid": 180774900997385,
+							"parameters": {
+								"seconds": "1.5"
+							}
+						},
+						{
+							"id": "set-speed",
+							"objectClass": "Elevator",
+							"sid": 853664447655387,
+							"behaviorType": "Custom",
+							"parameters": {
+								"which": "vertical",
+								"speed": "200"
+							}
+						},
+						{
+							"id": "set-angle-of-motion",
+							"objectClass": "Elevator",
+							"sid": 199432952894752,
+							"behaviorType": "Custom",
+							"parameters": {
+								"angle": "-90"
+							}
+						}
+					],
+					"sid": 551225098151132
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-animation-finished",
+							"objectClass": "Lever",
+							"sid": 233680164406932,
+							"parameters": {
+								"animation": "\"Lever transition\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation",
+							"objectClass": "Lever",
+							"sid": 724772514756925,
+							"parameters": {
+								"animation": "\"Active\"",
+								"from": "beginning"
+							}
+						}
+					],
+					"sid": 548161665191971
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-collision-with-another-object",
+							"objectClass": "MovingPlatform3DShape",
+							"sid": 391344508717583,
+							"parameters": {
+								"object": "InvisibleWall4"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-angle-of-motion",
+							"objectClass": "Elevator",
+							"sid": 534584066207998,
+							"behaviorType": "Custom",
+							"parameters": {
+								"angle": "90"
+							}
+						}
+					],
+					"sid": 189165105522001
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-collision-with-another-object",
+							"objectClass": "MovingPlatform",
+							"sid": 997203402369967,
+							"parameters": {
+								"object": "InvisibleWall1"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-angle-of-motion",
+							"objectClass": "Elevator",
+							"sid": 227079881790354,
+							"behaviorType": "Custom",
+							"parameters": {
+								"angle": "-90"
+							}
+						}
+					],
+					"sid": 466754327277730
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-created",
+							"objectClass": "Lever2",
+							"sid": 699783767316236
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation",
+							"objectClass": "Lever2",
+							"sid": 359372366222129,
+							"parameters": {
+								"animation": "\"Inactive\"",
+								"from": "beginning"
+							}
+						}
+					],
+					"sid": 481102996163799
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-collision-with-another-object",
+							"objectClass": "Boomerang",
+							"sid": 447435925094242,
+							"parameters": {
+								"object": "Lever2"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 147677864103838,
+							"parameters": {
+								"audio-file": "LeverSound",
+								"loop": "not-looping",
+								"volume": "0",
+								"stereo-pan": "0",
+								"tag-optional": "\"\""
+							}
+						},
+						{
+							"id": "set-animation",
+							"objectClass": "Lever2",
+							"sid": 620521304142109,
+							"parameters": {
+								"animation": "\"Lever transition\"",
+								"from": "beginning"
+							}
+						},
+						{
+							"id": "set-collisions-enabled",
+							"objectClass": "Lever2",
+							"sid": 669250602818894,
+							"parameters": {
+								"collisions": "disabled"
+							}
+						},
+						{
+							"id": "set-speed",
+							"objectClass": "Elevator",
+							"sid": 215234875203066,
+							"behaviorType": "Custom",
+							"parameters": {
+								"which": "overall",
+								"speed": "0"
+							}
+						},
+						{
+							"id": "set-speed",
+							"objectClass": "Elevator2",
+							"sid": 808794220636848,
+							"behaviorType": "Custom2",
+							"parameters": {
+								"which": "overall",
+								"speed": "200"
+							}
+						},
+						{
+							"id": "set-angle-of-motion",
+							"objectClass": "Elevator2",
+							"sid": 512192096481312,
+							"behaviorType": "Custom2",
+							"parameters": {
+								"angle": "0"
+							}
+						},
+						{
+							"id": "wait",
+							"objectClass": "System",
+							"sid": 778242636093577,
+							"parameters": {
+								"seconds": "5.5"
+							}
+						},
+						{
+							"id": "set-speed",
+							"objectClass": "Elevator3",
+							"sid": 409116193689794,
+							"behaviorType": "Custom",
+							"parameters": {
+								"which": "vertical",
+								"speed": "200"
+							}
+						},
+						{
+							"id": "set-angle-of-motion",
+							"objectClass": "Elevator3",
+							"sid": 858728400119705,
+							"behaviorType": "Custom",
+							"parameters": {
+								"angle": "-90"
+							}
+						}
+					],
+					"sid": 116801871987636
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-animation-finished",
+							"objectClass": "Lever2",
+							"sid": 673331846185138,
+							"parameters": {
+								"animation": "\"Lever transition\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation",
+							"objectClass": "Lever2",
+							"sid": 267962097640784,
+							"parameters": {
+								"animation": "\"Active\"",
+								"from": "beginning"
+							}
+						}
+					],
+					"sid": 187214186720444
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-collision-with-another-object",
+							"objectClass": "MovingPlatform3DShape2",
+							"sid": 581023465651045,
+							"parameters": {
+								"object": "InvisibleWall3"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-angle-of-motion",
+							"objectClass": "Elevator2",
+							"sid": 655999187675633,
+							"behaviorType": "Custom2",
+							"parameters": {
+								"angle": "-180"
+							}
+						}
+					],
+					"sid": 393186149115822
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-collision-with-another-object",
+							"objectClass": "MovingPlatform2",
+							"sid": 101648860822447,
+							"parameters": {
+								"object": "InvisibleWall2"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-angle-of-motion",
+							"objectClass": "Elevator2",
+							"sid": 738793842261007,
+							"behaviorType": "Custom2",
+							"parameters": {
+								"angle": "0"
+							}
+						}
+					],
+					"sid": 918439106552874
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-collision-with-another-object",
+							"objectClass": "MovingPlatform3",
+							"sid": 970516210293269,
+							"parameters": {
+								"object": "InvisibleWall5"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-speed",
+							"objectClass": "Elevator3",
+							"sid": 460527808232364,
+							"behaviorType": "Custom",
+							"parameters": {
+								"which": "overall",
+								"speed": "0"
+							}
+						},
+						{
+							"id": "wait",
+							"objectClass": "System",
+							"sid": 550995783513574,
+							"parameters": {
+								"seconds": "1.5"
+							}
+						},
+						{
+							"id": "set-speed",
+							"objectClass": "Elevator3",
+							"sid": 873743082020026,
+							"behaviorType": "Custom",
+							"parameters": {
+								"which": "overall",
+								"speed": "200"
+							}
+						},
+						{
+							"id": "set-angle-of-motion",
+							"objectClass": "Elevator3",
+							"sid": 126404669341189,
+							"behaviorType": "Custom",
+							"parameters": {
+								"angle": "90"
+							}
+						}
+					],
+					"sid": 860699964136906
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-collision-with-another-object",
+							"objectClass": "MovingPlatform3",
+							"sid": 569073777769670,
+							"parameters": {
+								"object": "InvisibleWall6"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-angle-of-motion",
+							"objectClass": "Elevator3",
+							"sid": 999365842430255,
+							"behaviorType": "Custom",
+							"parameters": {
+								"angle": "-90"
+							}
+						}
+					],
+					"sid": 697920218529989
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-collision-with-another-object",
+							"objectClass": "Boomerang",
+							"sid": 750834388395868,
+							"parameters": {
+								"object": "Lever3"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 316810758884408,
+							"parameters": {
+								"audio-file": "LeverSound",
+								"loop": "not-looping",
+								"volume": "0",
+								"stereo-pan": "0",
+								"tag-optional": "\"\""
+							}
+						},
+						{
+							"id": "set-animation",
+							"objectClass": "Lever3",
+							"sid": 721565947631897,
+							"parameters": {
+								"animation": "\"Lever transition\"",
+								"from": "beginning"
+							}
+						},
+						{
+							"id": "set-collisions-enabled",
+							"objectClass": "Lever3",
+							"sid": 207480020851186,
+							"parameters": {
+								"collisions": "disabled"
+							}
+						},
+						{
+							"id": "wait",
+							"objectClass": "System",
+							"sid": 941137546207786,
+							"parameters": {
+								"seconds": "1"
+							}
+						},
+						{
+							"id": "set-animation",
+							"objectClass": "Door",
+							"sid": 901567967888239,
+							"parameters": {
+								"animation": "\"Opening\"",
+								"from": "beginning"
+							}
+						}
+					],
+					"sid": 256244935219582
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-created",
+							"objectClass": "Door",
+							"sid": 210649014387838
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation",
+							"objectClass": "Door",
+							"sid": 490559885376163,
+							"parameters": {
+								"animation": "\"Idle\"",
+								"from": "beginning"
+							}
+						}
+					],
+					"sid": 754254742319265
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-animation-finished",
+							"objectClass": "Lever3",
+							"sid": 323031065786181,
+							"parameters": {
+								"animation": "\"Lever transition\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation",
+							"objectClass": "Lever3",
+							"sid": 253218164781413,
+							"parameters": {
+								"animation": "\"Active\"",
+								"from": "beginning"
+							}
+						}
+					],
+					"sid": 221209428987144
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-created",
+							"objectClass": "Lever3",
+							"sid": 645136949955417
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation",
+							"objectClass": "Lever3",
+							"sid": 250600636596921,
+							"parameters": {
+								"animation": "\"Inactive\"",
+								"from": "beginning"
+							}
+						}
+					],
+					"sid": 894798395457520
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-collision-with-another-object",
+							"objectClass": "Player",
+							"sid": 263505016898377,
+							"parameters": {
+								"object": "DoubleJumpTrigger"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-double-jump",
+							"objectClass": "Player",
+							"sid": 398263801892003,
+							"behaviorType": "Platform",
+							"parameters": {
+								"state": "enabled"
+							}
+						}
+					],
+					"sid": 363908692355694
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-collision-with-another-object",
+							"objectClass": "Player",
+							"sid": 903157123227367,
+							"parameters": {
+								"object": "DoubleJumpTrigger2"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-double-jump",
+							"objectClass": "Player",
+							"sid": 410751083005041,
+							"behaviorType": "Platform",
+							"parameters": {
+								"state": "disabled"
+							}
+						}
+					],
+					"sid": 990270738885135
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-created",
+							"objectClass": "Lever4",
+							"sid": 865875401036184
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation",
+							"objectClass": "Lever4",
+							"sid": 619533620701048,
+							"parameters": {
+								"animation": "\"Inactive\"",
+								"from": "beginning"
+							}
+						}
+					],
+					"sid": 893779616860698
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-collision-with-another-object",
+							"objectClass": "Boomerang",
+							"sid": 828737227099427,
+							"parameters": {
+								"object": "Lever4"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation",
+							"objectClass": "TrapDoor",
+							"sid": 527039155326741,
+							"parameters": {
+								"animation": "\"Opening\"",
+								"from": "beginning"
+							}
+						},
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 788211981398079,
+							"parameters": {
+								"audio-file": "LeverSound",
+								"loop": "not-looping",
+								"volume": "0",
+								"stereo-pan": "0",
+								"tag-optional": "\"\""
+							}
+						},
+						{
+							"id": "set-animation",
+							"objectClass": "Lever4",
+							"sid": 778441819867655,
+							"parameters": {
+								"animation": "\"Lever transition\"",
+								"from": "beginning"
+							}
+						},
+						{
+							"id": "set-collisions-enabled",
+							"objectClass": "Lever4",
+							"sid": 418170798926861,
+							"parameters": {
+								"collisions": "disabled"
+							}
+						}
+					],
+					"sid": 353285352277784
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-created",
+							"objectClass": "TrapDoor",
+							"sid": 504762785214951
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation",
+							"objectClass": "TrapDoor",
+							"sid": 204609802047631,
+							"parameters": {
+								"animation": "\"Idle\"",
+								"from": "beginning"
+							}
+						}
+					],
+					"sid": 414482196536466
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-animation-finished",
+							"objectClass": "Lever4",
+							"sid": 286764646855225,
+							"parameters": {
+								"animation": "\"Lever transition\""
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation",
+							"objectClass": "Lever4",
+							"sid": 939556823353325,
+							"parameters": {
+								"animation": "\"Active\"",
+								"from": "beginning"
+							}
+						}
+					],
+					"sid": 664578904966707
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-created",
+							"objectClass": "MovingPlatform4",
+							"sid": 258749708684100
+						}
+					],
+					"actions": [
+						{
+							"id": "set-enabled",
+							"objectClass": "Elevator4",
+							"sid": 740220502396334,
+							"behaviorType": "Custom4",
+							"parameters": {
+								"state": "enabled"
+							}
+						},
+						{
+							"id": "set-speed",
+							"objectClass": "Elevator4",
+							"sid": 606290761591820,
+							"behaviorType": "Custom4",
+							"parameters": {
+								"which": "overall",
+								"speed": "200"
+							}
+						},
+						{
+							"id": "set-angle-of-motion",
+							"objectClass": "Elevator4",
+							"sid": 931649958666802,
+							"behaviorType": "Custom4",
+							"parameters": {
+								"angle": "180"
+							}
+						}
+					],
+					"sid": 465345736650425
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-collision-with-another-object",
+							"objectClass": "MovingPlatform4",
+							"sid": 986648684231556,
+							"parameters": {
+								"object": "InvisibleWall10"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-angle-of-motion",
+							"objectClass": "Elevator4",
+							"sid": 980924929531929,
+							"behaviorType": "Custom4",
+							"parameters": {
+								"angle": "0"
+							}
+						}
+					],
+					"sid": 863569954262981
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-collision-with-another-object",
+							"objectClass": "MovingPlatform4",
+							"sid": 971810248396037,
+							"parameters": {
+								"object": "InvisibleWall9"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-angle-of-motion",
+							"objectClass": "Elevator4",
+							"sid": 967485097167000,
+							"behaviorType": "Custom4",
+							"parameters": {
+								"angle": "180"
+							}
+						}
+					],
+					"sid": 882342116155103
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-collision-with-another-object",
+							"objectClass": "Player",
+							"sid": 166379285995010,
+							"parameters": {
+								"object": "DoubleJumpTrigger3"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-double-jump",
+							"objectClass": "Player",
+							"sid": 911731725014674,
+							"behaviorType": "Platform",
+							"parameters": {
+								"state": "enabled"
+							}
+						}
+					],
+					"sid": 558355293382509
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-collision-with-another-object",
+							"objectClass": "Player",
+							"sid": 377044597375505,
+							"parameters": {
+								"object": "DoubleJumpTrigger4"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-double-jump",
+							"objectClass": "Player",
+							"sid": 815050224595355,
+							"behaviorType": "Platform",
+							"parameters": {
+								"state": "disabled"
+							}
+						}
+					],
+					"sid": 839509622695691
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-created",
+							"objectClass": "MovingPlatform5",
+							"sid": 174415446775453
+						}
+					],
+					"actions": [
+						{
+							"id": "set-enabled",
+							"objectClass": "Elevator5",
+							"sid": 473355846519463,
+							"behaviorType": "Custom",
+							"parameters": {
+								"state": "enabled"
+							}
+						},
+						{
+							"id": "set-speed",
+							"objectClass": "Elevator5",
+							"sid": 699427114120670,
+							"behaviorType": "Custom",
+							"parameters": {
+								"which": "overall",
+								"speed": "200"
+							}
+						},
+						{
+							"id": "set-angle-of-motion",
+							"objectClass": "Elevator5",
+							"sid": 235754547327803,
+							"behaviorType": "Custom",
+							"parameters": {
+								"angle": "90"
+							}
+						}
+					],
+					"sid": 656690241899570
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-collision-with-another-object",
+							"objectClass": "MovingPlatform5",
+							"sid": 517538802077337,
+							"parameters": {
+								"object": "InvisibleWall11"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-angle-of-motion",
+							"objectClass": "Elevator5",
+							"sid": 715318653958376,
+							"behaviorType": "Custom",
+							"parameters": {
+								"angle": "90"
+							}
+						}
+					],
+					"sid": 858737220676961
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-collision-with-another-object",
+							"objectClass": "MovingPlatform5",
+							"sid": 119144120697501,
+							"parameters": {
+								"object": "InvisibleWall12"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-angle-of-motion",
+							"objectClass": "Elevator5",
+							"sid": 503804468875351,
+							"behaviorType": "Custom",
+							"parameters": {
+								"angle": "-90"
+							}
+						}
+					],
+					"sid": 748627881270854
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-collision-with-another-object",
+							"objectClass": "DoubleJumpTrigger",
+							"sid": 777516985762705,
+							"parameters": {
+								"object": "Player"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-visible",
+							"objectClass": "DoubleJumpTrigger",
+							"sid": 318732645944366,
+							"parameters": {
+								"visibility": "invisible"
+							}
+						},
+						{
+							"id": "set-visible",
+							"objectClass": "DoubleJumpTrigger2",
+							"sid": 658437761206209,
+							"parameters": {
+								"visibility": "visible"
+							}
+						}
+					],
+					"sid": 775278629688178
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-collision-with-another-object",
+							"objectClass": "DoubleJumpTrigger2",
+							"sid": 206787011941709,
+							"parameters": {
+								"object": "Player"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-visible",
+							"objectClass": "DoubleJumpTrigger",
+							"sid": 654380748788044,
+							"parameters": {
+								"visibility": "visible"
+							}
+						},
+						{
+							"id": "set-visible",
+							"objectClass": "DoubleJumpTrigger2",
+							"sid": 520474838872542,
+							"parameters": {
+								"visibility": "invisible"
+							}
+						}
+					],
+					"sid": 350707099409091
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-created",
+							"objectClass": "DoubleJumpTrigger2",
+							"sid": 814836126327594
+						}
+					],
+					"actions": [
+						{
+							"id": "set-visible",
+							"objectClass": "DoubleJumpTrigger2",
+							"sid": 845826487009168,
+							"parameters": {
+								"visibility": "invisible"
+							}
+						},
+						{
+							"id": "set-animation",
+							"objectClass": "DoubleJumpTrigger2",
+							"sid": 755327051400982,
+							"parameters": {
+								"animation": "\"Idle\"",
+								"from": "beginning"
+							}
+						}
+					],
+					"sid": 944576225742908
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-created",
+							"objectClass": "DoubleJumpTrigger",
+							"sid": 609170301192256
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation",
+							"objectClass": "DoubleJumpTrigger",
+							"sid": 177512194929909,
+							"parameters": {
+								"animation": "\"Idle\"",
+								"from": "beginning"
+							}
+						}
+					],
+					"sid": 312823376978884
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-collision-with-another-object",
+							"objectClass": "DoubleJumpTrigger3",
+							"sid": 435525464301117,
+							"parameters": {
+								"object": "Player"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-visible",
+							"objectClass": "DoubleJumpTrigger3",
+							"sid": 674531554508620,
+							"parameters": {
+								"visibility": "invisible"
+							}
+						},
+						{
+							"id": "set-visible",
+							"objectClass": "DoubleJumpTrigger4",
+							"sid": 996720024684201,
+							"parameters": {
+								"visibility": "visible"
+							}
+						}
+					],
+					"sid": 283590014572554
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-collision-with-another-object",
+							"objectClass": "DoubleJumpTrigger4",
+							"sid": 275322915287416,
+							"parameters": {
+								"object": "Player"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "set-visible",
+							"objectClass": "DoubleJumpTrigger3",
+							"sid": 913565465004954,
+							"parameters": {
+								"visibility": "visible"
+							}
+						},
+						{
+							"id": "set-visible",
+							"objectClass": "DoubleJumpTrigger4",
+							"sid": 130235055067931,
+							"parameters": {
+								"visibility": "invisible"
+							}
+						}
+					],
+					"sid": 768837835834808
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-created",
+							"objectClass": "DoubleJumpTrigger4",
+							"sid": 847053294836711
+						}
+					],
+					"actions": [
+						{
+							"id": "set-visible",
+							"objectClass": "DoubleJumpTrigger4",
+							"sid": 602339183198248,
+							"parameters": {
+								"visibility": "invisible"
+							}
+						},
+						{
+							"id": "set-animation",
+							"objectClass": "DoubleJumpTrigger4",
+							"sid": 503827971090001,
+							"parameters": {
+								"animation": "\"Idle\"",
+								"from": "beginning"
+							}
+						}
+					],
+					"sid": 629976492770593
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-created",
+							"objectClass": "DoubleJumpTrigger3",
+							"sid": 290391421031565
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation",
+							"objectClass": "DoubleJumpTrigger3",
+							"sid": 355730115132732,
+							"parameters": {
+								"animation": "\"Idle\"",
+								"from": "beginning"
+							}
+						}
+					],
+					"sid": 270646690205658
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-created",
+							"objectClass": "Saw",
+							"sid": 359616207062578
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation",
+							"objectClass": "Saw",
+							"sid": 445301476734992,
+							"parameters": {
+								"animation": "\"Idle\"",
+								"from": "beginning"
+							}
+						}
+					],
+					"sid": 178252391766972
+				}
+			],
+			"sid": 532923559861406
+		},
+		{
+			"eventType": "group",
+			"disabled": false,
+			"title": "Other",
+			"description": "",
+			"isActiveOnStart": true,
+			"children": [
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-created",
+							"objectClass": "Arrow",
+							"sid": 650638663020818
+						}
+					],
+					"actions": [
+						{
+							"id": "set-animation",
+							"objectClass": "Arrow",
+							"sid": 107447053196543,
+							"parameters": {
+								"animation": "\"Idle\"",
+								"from": "beginning"
+							}
+						}
+					],
+					"sid": 476972701236106
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-collision-with-another-object",
+							"objectClass": "Player",
+							"sid": 785129424244288,
+							"parameters": {
+								"object": "WinTrigger"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "go-to-layout",
+							"objectClass": "System",
+							"sid": 825940179870925,
+							"parameters": {
+								"layout": "YouWin"
+							}
+						},
+						{
+							"id": "restart-layout",
+							"objectClass": "System",
+							"sid": 512000465215218
+						}
+					],
+					"sid": 339808211864089
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-collision-with-another-object",
+							"objectClass": "Player",
+							"sid": 783122342010108,
+							"parameters": {
+								"object": "GameOverTrigger"
+							}
+						}
+					],
+					"actions": [
+						{
+							"id": "go-to-layout",
+							"objectClass": "System",
+							"sid": 154616007678721,
+							"parameters": {
+								"layout": "GameOver"
+							}
+						},
+						{
+							"id": "restart-layout",
+							"objectClass": "System",
+							"sid": 562766609015694
+						}
+					],
+					"sid": 667821327141989
+				},
+				{
+					"eventType": "block",
+					"conditions": [
+						{
+							"id": "on-start-of-layout",
+							"objectClass": "System",
+							"sid": 186938391709960
+						}
+					],
+					"actions": [
+						{
+							"id": "play",
+							"objectClass": "Audio",
+							"sid": 497969358417749,
+							"parameters": {
+								"audio-file": "BG Music",
+								"loop": "looping",
+								"volume": "-8",
+								"stereo-pan": "0",
+								"tag-optional": "\"\""
+							}
+						}
+					],
+					"sid": 909738543042183,
+					"disabled": true
+				}
+			],
+			"sid": 228891277366875
+		}
+	],
+	"sid": 549638892072969
+}

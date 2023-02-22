@@ -1,0 +1,48 @@
+{
+	"name": "MovingPlatform3DShape7",
+	"plugin-id": "Sprite",
+	"sid": 582727190847743,
+	"isGlobal": false,
+	"instanceVariables": [],
+	"behaviorTypes": [
+		{
+			"behaviorId": "custom",
+			"name": "Custom3",
+			"sid": 736435437191465
+		},
+		{
+			"behaviorId": "custom",
+			"name": "Custom2",
+			"sid": 225581150455493
+		}
+	],
+	"effectTypes": [],
+	"animations": {
+		"items": [
+			{
+				"frames": [
+					{
+						"width": 50,
+						"height": 100,
+						"originX": 0.5,
+						"originY": 0.5,
+						"originalSource": "",
+						"exportFormat": "lossless",
+						"exportQuality": 0.8,
+						"imageSpriteId": 9814072,
+						"useCollisionPoly": true,
+						"duration": 1
+					}
+				],
+				"sid": 669828668964645,
+				"name": "Animation 1",
+				"isLooping": false,
+				"isPingPong": false,
+				"repeatCount": 1,
+				"repeatTo": 0,
+				"speed": 5
+			}
+		],
+		"subfolders": []
+	}
+}

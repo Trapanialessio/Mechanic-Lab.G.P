@@ -1,0 +1,32 @@
+{
+	"name": "G.O. Event sheet",
+	"events": [
+		{
+			"eventType": "block",
+			"conditions": [
+				{
+					"id": "on-any-key-pressed",
+					"objectClass": "Keyboard",
+					"sid": 174123911288457
+				}
+			],
+			"actions": [
+				{
+					"id": "go-to-layout",
+					"objectClass": "System",
+					"sid": 685139358693973,
+					"parameters": {
+						"layout": "Level 1"
+					}
+				},
+				{
+					"id": "restart-layout",
+					"objectClass": "System",
+					"sid": 209527970746349
+				}
+			],
+			"sid": 609514281813474
+		}
+	],
+	"sid": 819427391240754
+}

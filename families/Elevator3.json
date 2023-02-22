@@ -1,0 +1,19 @@
+{
+	"name": "Elevator3",
+	"plugin-id": "Sprite",
+	"sid": 750091244022686,
+	"instanceVariables": [],
+	"behaviorTypes": [
+		{
+			"behaviorId": "custom",
+			"name": "Custom",
+			"sid": 932652631932585
+		}
+	],
+	"effectTypes": [],
+	"members": [
+		"MovingPlatform3",
+		"MovingPlatform3DShape4",
+		"MovingPlatform3DShape5"
+	]
+}
